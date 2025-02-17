@@ -17,6 +17,8 @@
 
 ### Целевая аудитория
 
+![Страны, в которых работает Яндекс Такси](https://upload.wikimedia.org/wikipedia/commons/9/98/Yandex_Taxi_available_countries.png)
+
 * 42M+ MAU в СНГ [1]
 * ~70% аудитории находится в РФ [2] 
 * 92% аудитории используют мобильный клиент
