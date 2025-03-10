@@ -308,6 +308,8 @@ kubernetes удобен, поскольку:
     * Поддеривает микросервисную архитектуру
     * Повышает надёжность
 
+3. Service Mesh. Для взаимодействия между микросервисами решено использовать consul.
+
 ## Источники
 1. https://dev.go.yandex/blog/yandex-taxi-reliability-2024-05-30
 2. https://tass.ru/ekonomika/18379431
