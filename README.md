@@ -414,11 +414,11 @@ users | user_id - первичный ключ
 | drivers | driver_id - первичный ключ <br> user_id - индекс для быстрого поиска водителя по id пользователя |
 | car_types | car_type_id - первичный ключ |
 | cars | car_id - PK |
-| trips | trip_id - PK <br> driver_id - быстрый поиск по водителям <br> passenger_id - быстрый поиск по пассажирам (история поездок) |
-| chat | chat_id - PK <br> trip_id - для поиска по поездке |
-| driver_ratings | rating_id - PK <br> driver_id - выстрый поиск по водителю |
-| passenger_ratings | rating_id - PK <br> passenger_id - выстрый поиск по пассажиру |
-| payments | payment_id - PK <br> trip_id - для проверки статуса оплаты по конкретной поездке|
+| trips | trip_id - PK <br> driver_id (**hash**) - быстрый поиск по водителям <br> passenger_id (**hash**) - быстрый поиск по пассажирам (история поездок) |
+| chat | chat_id - PK <br> trip_id (**hash**) - для поиска по поездке |
+| driver_ratings | rating_id - PK <br> driver_id (**hash**) - выстрый поиск по водителю |
+| passenger_ratings | rating_id - PK <br> passenger_id (**hash**) - выстрый поиск по пассажиру |
+| payments | payment_id - PK <br> trip_id (**hash**) - для проверки статуса оплаты по конкретной поездке|
 
 ### Денормализация
 
@@ -464,8 +464,8 @@ users | user_id - первичный ключ
 | cars | Автошардировние по driver_id | mirror-3-dc. PITR |
 | trips | HASH-шардирование по trip_id. Дополнительно партиционирование по годам | mirror-3-dc. PITR |
 | chats | HASH-шардирование по trip_id, sender_id, reciever_id | mirror-3-dc | mirror-3-dc. PITR |
-| driver_ratings |  | |
-| passanger_rating |  |
+| driver_ratings | HASH-шардирование по driver_id | mirror-3-dc |
+| passanger_rating | HASH-шардирование по passanger_id | mirror-3-dc |
 | payments | HASH-шардирование по trip_id
 | locations | изолированный redis в каждом ДЦ | отсутствует синхронизация между ДЦ. Локальный кластер Redis (master + slave) в ЦОДах | 
 | session | изолированный redis в каждом ДЦ | аналогично locations |
